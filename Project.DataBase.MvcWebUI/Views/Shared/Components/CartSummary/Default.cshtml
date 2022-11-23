@@ -1,0 +1,16 @@
+﻿@model Project.DataBase.MvcWebUI.Models.CartSummaryViewModel
+<ul class="dropdown-menu dropdown-menu-end">
+    @foreach (var item in Model.Cart.CartLines)
+    {
+        <li><a class="dropdown-item">@item.Product.ProductName <span class="badge bg-black">@item.Quantity</span></a></li>
+    }
+    <li role="separator" class="dropdown-divider"></li>
+    <li>
+        <a class="dropdown-item">
+            <span class="bi bi-cart-fill">@Model.Cart.Total</span>
+        </a>
+    </li>
+    <li><a class="dropdown-item" href="#"></a></li>
+    <li role="separator" class="dropdown-divider"></li>
+    <li><a class="dropdown-item" asp-controller="Cart" asp-action="List">Go to cart details</a></li>
+</ul>

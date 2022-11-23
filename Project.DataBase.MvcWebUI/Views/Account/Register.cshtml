@@ -1,0 +1,109 @@
+﻿@model Project.DataBase.MvcWebUI.Models.RegisterViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <div id="signupbox" style="margin-top:50px;" class="mainbox col-md-6">
+        <div class="card ">
+            <div class="card-header card text-dark bg-info mb-3">
+                <div class="card-title">Sign Up</div>
+            </div>
+            <div class="card-body">
+                <form asp-controller="Account" asp-action="Register" method="post" class="form-horizontal" role="form">
+
+                    <div class="mb-3">
+                        <label asp-for="UserName" class="col-md-3 control-label"></label>
+                        <div class="col-md-9">
+                            <input asp-for="UserName" type="text" class="form-control" placeholder="User Name">
+                            <span asp-validation-for="UserName"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Email" class="col-md-3 control-label"></label>
+                        <div class="col-md-9">
+                            <input asp-for="Email" class="form-control" placeholder="Email Address">
+                            <span asp-validation-for="Email"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Customer.FirstName" class="col-md-3 control-label"></label>
+                        <div class="col-md-9">
+                            <input asp-for="Customer.FirstName" type="text" class="form-control" placeholder="First Name">
+                            <span asp-validation-for="Customer.FirstName"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Customer.LastName" class="col-md-3 control-label"></label>
+                        <div class="col-md-9">
+                            <input asp-for="Customer.LastName" type="text" class="form-control" placeholder="Last Name">
+                            <span asp-validation-for="Customer.LastName"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Customer.Address" class="col-md-3 control-label"></label>
+                        <div class="col-md-9">
+                            <input asp-for="Customer.Address" type="text" class="form-control" placeholder="Address">
+                            <span asp-validation-for="Customer.Address"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Customer.City" class="col-md-3 control-label"></label>
+                        <div class="col-md-9">
+                            <input asp-for="Customer.City" type="text" class="form-control" placeholder="City">
+                            <span asp-validation-for="Customer.City"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Customer.County" class="col-md-3 control-label"></label>
+                        <div class="col-md-9">
+                            <input asp-for="Customer.County" type="text" class="form-control" placeholder="County">
+                            <span asp-validation-for="Customer.County"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Customer.Country" class="col-md-3 control-label"></label>
+                        <div class="col-md-9">
+                            <input asp-for="Customer.Country" type="text" class="form-control" placeholder="Country">
+                            <span asp-validation-for="Customer.Country"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Customer.Phone" class="col-md-3 control-label"></label>
+                        <div class="col-md-9">
+                            <input asp-for="Customer.Phone" type="text" class="form-control" placeholder="Last Name">
+                            <span asp-validation-for="Customer.Phone"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Password" class="col-md-3 control-label"></label>
+                        <div class="col-md-9">
+                            <input asp-for="Password" class="form-control" placeholder="Password">
+                            <span asp-validation-for="Password"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <!-- Button -->
+                        <div class="col-md-offset-3 col-md-9">
+                            <input type="submit" class="btn btn-info" value="Register"><i class="icon-hand-right"></i>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="col-md-12 control">
+                            <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
+                                <a asp-controller="Account" asp-action="Login">Sign In</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

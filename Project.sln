@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.Core", "Project.Core\Project.Core.csproj", "{F4A1DAF0-C3B6-4E6F-B31C-7FC078142839}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.Core", "Project.Core\Project.Core.csproj", "{F4A1DAF0-C3B6-4E6F-B31C-7FC078142839}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.DataBase.Entities", "Project.DataBase.Entities\Project.DataBase.Entities.csproj", "{C6C5B653-9F6A-4BAB-AE0A-2039C2FDFCB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.DataBase.Entities", "Project.DataBase.Entities\Project.DataBase.Entities.csproj", "{C6C5B653-9F6A-4BAB-AE0A-2039C2FDFCB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.DataBase.DataAccess", "Project.DataBase.DataAccess\Project.DataBase.DataAccess.csproj", "{BA3285C4-DBF6-4238-919B-9E1BB9255E6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.DataBase.DataAccess", "Project.DataBase.DataAccess\Project.DataBase.DataAccess.csproj", "{BA3285C4-DBF6-4238-919B-9E1BB9255E6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.DataBase.Business", "Project.DataBase.Business\Project.DataBase.Business.csproj", "{5FEE0E71-23EC-4293-A414-BDB0525D602E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.DataBase.Business", "Project.DataBase.Business\Project.DataBase.Business.csproj", "{5FEE0E71-23EC-4293-A414-BDB0525D602E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.DataBase.MvcWebUI", "Project.DataBase.MvcWebUI\Project.DataBase.MvcWebUI.csproj", "{44385FDE-74FD-4884-A0D6-71AC85E72D03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.DataBase.MvcWebUI", "Project.DataBase.MvcWebUI\Project.DataBase.MvcWebUI.csproj", "{44385FDE-74FD-4884-A0D6-71AC85E72D03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

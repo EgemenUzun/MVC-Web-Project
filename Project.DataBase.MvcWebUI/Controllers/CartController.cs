@@ -111,7 +111,12 @@ namespace Project.DataBase.MvcWebUI.Controllers
                 var modelProduct = new Product
                 {
                     ProductId = cartLine.Product.ProductId,
-                    UnitsOnOrder = cartLine.Product.UnitsOnOrder + cartLine.Quantity
+                    ProductName = cartLine.Product.ProductName,
+                    SupplierId = cartLine.Product.SupplierId,
+                    UnitsOnOrder = cartLine.Product.UnitsOnOrder + cartLine.Quantity,
+                    CategoryId = cartLine.Product.CategoryId,
+                    UnitPrice = cartLine.Product.UnitPrice,
+                    UnitsInStock = cartLine.Product.UnitsInStock,
                 };
                 _productService.Update(modelProduct);
             }

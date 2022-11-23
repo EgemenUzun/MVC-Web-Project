@@ -1,14 +1,27 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Project.DataBase.DataAccess.Abstract;
+using Project.DataBase.MvcWebUI.Models;
+using Project.DataBase.MvcWebUI.TagHelpers;
 
 namespace Project.DataBase.MvcWebUI.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
-        [Authorize]
+        IOrderDetailDal _orderDDal;
+        public OrderController(IOrderDetailDal orderDDal)
+        {
+            _orderDDal = orderDDal;
+        }
+        
         public IActionResult Index()
         {
-            return View();
+            var model = new OrderDetailModel
+            {
+                orderModels = _orderDDal.GetOrdersWithDetails(User.GetUserId())
+            };
+            return View(model);
         }
     }
 }

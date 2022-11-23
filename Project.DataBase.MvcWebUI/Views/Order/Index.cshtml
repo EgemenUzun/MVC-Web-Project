@@ -1,0 +1,58 @@
+﻿@model Project.DataBase.MvcWebUI.Models.OrderDetailModel
+
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <td>Product Name</td>
+                <td>Unit Price</td>
+                <td>Quantity</td>
+                <td>OrderDate</td>
+                <td>RequiredDate</td>
+                <td>CompanyName</td>
+                <td>Total</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.orderModels)
+            {
+                <tr>
+                    <td>
+                        @item.ProductName
+                    </td>
+                    <td>
+                        @item.UnitPrice
+                    </td>
+                    <td>
+                        @item.Quantity
+                    </td>
+                    <td>
+                        @item.OrderDate
+                    </td>
+                    <td>
+                        @item.RequiredDate
+                    </td>
+                    <td>
+                        @item.CompanyName
+                    </td>
+                    <td>
+                        @item.Total
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

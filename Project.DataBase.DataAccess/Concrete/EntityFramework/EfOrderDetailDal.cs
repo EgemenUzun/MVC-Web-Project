@@ -13,7 +13,7 @@ namespace Project.DataBase.DataAccess.Concrete.EntityFramework
 {
     public class EfOrderDetailDal : EfEntityRepositoryBase<OrderDetail, SellinSiteContext>, IOrderDetailDal
     {
-        public List<OrderModel> GetOrdersWithDetails()
+        public List<OrderModel> GetOrdersWithDetails(string customerid)
         {
             using (SellinSiteContext context = new SellinSiteContext())
             {
@@ -24,6 +24,7 @@ namespace Project.DataBase.DataAccess.Concrete.EntityFramework
                              on od.OrderId equals o.OrderId
                              join s in context.shippers
                              on o.ShipperId equals s.ShipperId
+                             where(o.CustomerId == customerid)
                              select new OrderModel
                              {
                                  ProductName = p.ProductName,

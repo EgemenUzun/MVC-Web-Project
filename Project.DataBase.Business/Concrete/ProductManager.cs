@@ -1,6 +1,7 @@
 ﻿using Project.DataBase.Business.Abstract;
 using Project.DataBase.DataAccess.Abstract;
 using Project.DataBase.Entities.Concrete;
+using SellingSites.Entities;
 
 namespace Project.DataBase.Business.Concrete
 {
@@ -31,7 +32,14 @@ namespace Project.DataBase.Business.Concrete
         {
             return _productDal.GetList(p => (p.CategoryId == categoryId || categoryId == 0));
         }
-
+        public List<Product> GetByLogin(string customerid,int? categoryId)
+        {
+            return _productDal.GetList(p => ( p.SupplierId !=customerid && (p.CategoryId == categoryId || categoryId == 0)));
+        }
+        public List<Product> GetByUser(string customerid)
+        {
+            return _productDal.GetList(p => (p.SupplierId == customerid));
+        }
         public Product GetByID(int productId )
         {
             return _productDal.Get(p => p.ProductId == productId);

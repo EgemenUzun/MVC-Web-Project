@@ -17,7 +17,8 @@ namespace Project.DataBase.MvcWebUI.Controllers
         public IActionResult Index(int page =1,int category=0)
         {
             int pageSize = 10;
-            var products =_productService.GetByCategory(category);
+            var products = User.GetUserId() == null ?_productService.GetByCategory(category) : 
+                _productService.GetByLogin(User.GetUserId(), category);
             ProductListViewModel model = new ProductListViewModel
             {
                 Products = products.Skip((page - 1) * pageSize).Take(pageSize).ToList(),

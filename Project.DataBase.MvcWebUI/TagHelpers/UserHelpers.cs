@@ -9,7 +9,9 @@ namespace Project.DataBase.MvcWebUI.TagHelpers
         {
             var claimsIdentity = (ClaimsIdentity)principal.Identity;
             var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
-            return claim.Value;
+            if (claim != null)
+                return claim.Value;
+            return null;
         }
     }
 }

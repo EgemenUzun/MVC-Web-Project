@@ -33,15 +33,17 @@ namespace Project.DataBase.MvcWebUI.Controllers
             _cartService.AddToCart(cart, productToBeAdded);
             foreach (CartLine item in cart.CartLines)
             {
-                if (item.Product.SupplierId != User.GetUserId() &&item.Product.ProductId == productId && (item.Quantity <= item.Product.UnitsInStock - item.Product.UnitsOnOrder))
+                if (item.Product.SupplierId != User.GetUserId() && item.Product.ProductId == productId && (item.Quantity <= item.Product.UnitsInStock - item.Product.UnitsOnOrder))
                 {
                     _cartSessionService.SetCart(cart);
-                    TempData.Add("message", String.Format("Your Product, {0}, was successfully added to the cart!", productToBeAdded.ProductName));                
+                    TempData.Clear();
+                    TempData.Add("message", String.Format("Your Product, {0}, was successfully added to the cart!", productToBeAdded.ProductName));
                 }
-                else if(item.Product.ProductId == productId && (item.Quantity > item.Product.UnitsInStock - item.Product.UnitsOnOrder))
-                    TempData.Add("message", String.Format("Your Product,{0} was faild to add because we dont have enough stocks", productToBeAdded.ProductName));
-                else if(item.Product.SupplierId == User.GetUserId())
-                    TempData.Add("message", String.Format("You shouldnt buy your product"));
+                else if (item.Product.ProductId == productId && (item.Quantity > item.Product.UnitsInStock - item.Product.UnitsOnOrder))
+                {
+                    TempData.Clear();
+                    TempData.Add("message", String.Format("Your Product,{0} was faild to add because we dont have enough stocks", productToBeAdded.ProductName)); 
+                }
 
             }
             return RedirectToAction("Index", "Product");
@@ -53,7 +55,11 @@ namespace Project.DataBase.MvcWebUI.Controllers
             {
                 Cart = cart
             };
-            return View(cartListViewModel);
+            if (cart.CartLines.Count != 0)
+                return View(cartListViewModel);
+            TempData.Clear();
+            TempData.Add("message", String.Format("Your cart is empty!"));
+            return RedirectToAction("Index", "Product");
 
         }
         public ActionResult Remove(int productId)
@@ -61,6 +67,7 @@ namespace Project.DataBase.MvcWebUI.Controllers
             var cart = _cartSessionService.GetCart();
             _cartService.RemoveFromCart(cart, productId);
             _cartSessionService.SetCart(cart);
+            TempData.Clear();
             TempData.Add("message", String.Format("Your Product was successfully removed from the cart!"));
             return RedirectToAction("List");
         }
@@ -71,8 +78,9 @@ namespace Project.DataBase.MvcWebUI.Controllers
             {
                 ShippingDetails = new ShippingDetails()
             };
-
-            return View();
+            if(shippingDetailsViewModel.ShippingDetails != null)
+                return View();
+            return RedirectToAction("Index");
         }
         [HttpPost]
         public IActionResult Complete(ShippingDetails shippingDetails)
@@ -108,7 +116,7 @@ namespace Project.DataBase.MvcWebUI.Controllers
                     Quantity = cartLine.Quantity,
                 };
                 _oderDetailService.Add(modelOrderDetail);
-                var modelProduct = new Product
+                /*var modelProduct = new Product
                 {
                     ProductId = cartLine.Product.ProductId,
                     ProductName = cartLine.Product.ProductName,
@@ -118,7 +126,7 @@ namespace Project.DataBase.MvcWebUI.Controllers
                     UnitPrice = cartLine.Product.UnitPrice,
                     UnitsInStock = cartLine.Product.UnitsInStock,
                 };
-                _productService.Update(modelProduct);
+                _productService.Update(modelProduct);*/
             }
         TempData.Add("message", String.Format("Thank you {0}, your oder is in process", shippingDetails.FirstName));
             return View();

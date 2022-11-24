@@ -22,7 +22,7 @@ namespace Project.DataBase.MvcWebUI.Controllers
         {
             var productListViewmodel = new ProductListViewModel
             {
-                Products = _productService.GetAll()
+                Products = _productService.GetByUser(User.GetUserId())
             };
 
             return View(productListViewmodel);
@@ -63,6 +63,8 @@ namespace Project.DataBase.MvcWebUI.Controllers
         {
             if (ModelState.IsValid)
             {
+                product.SupplierId=this.User.GetUserId();
+                product.UnitsOnOrder = _productService.GetByID(product.ProductId).UnitsOnOrder;
                 _productService.Update(product);
                 TempData.Add("message", "Product was successfully updated");
             }

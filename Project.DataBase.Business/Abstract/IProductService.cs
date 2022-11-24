@@ -15,5 +15,7 @@ namespace Project.DataBase.Business.Abstract
         void Update(Product product);
         void Delete(int productId);
         Product GetByID(int productId);
+        public List<Product> GetByLogin(string customerid, int? categoryId);
+        public List<Product> GetByUser(string customerid);
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
 using Project.DataBase.Business.Abstract;
+using Project.DataBase.DataAccess.Abstract;
 using Project.DataBase.Entities.Concrete;
 using Project.DataBase.MvcWebUI.Models;
 using Project.DataBase.MvcWebUI.Services;
@@ -18,13 +19,17 @@ namespace Project.DataBase.MvcWebUI.Controllers
         IProductService _productService;
         IOrderService _oderService;
         IOrderDetailService _oderDetailService;
-        public CartController(ICartSessionService cartSessionService, ICartService cartService, IProductService productService, IOrderService oderService, IOrderDetailService oderDetailService)
+        IOrderDetailDal _orderDDal;
+        IOrderDal _orderDal;
+        public CartController(ICartSessionService cartSessionService, ICartService cartService, IProductService productService, IOrderService oderService, IOrderDetailService oderDetailService , IOrderDetailDal orderDDal , IOrderDal orderDal)
         {
             _cartSessionService = cartSessionService;
             _cartService = cartService;
             _productService = productService;
             _oderService = oderService;
             _oderDetailService = oderDetailService;
+            _orderDDal = orderDDal;
+            _orderDal = orderDal;
         }
         public ActionResult AddToCArt(int productId)
         {
@@ -105,7 +110,6 @@ namespace Project.DataBase.MvcWebUI.Controllers
                 IsProgress = true,
                 IsCanceled = false
             };
-
             _oderService.Add(modelOrder);
             foreach (CartLine cartLine in cart.CartLines)
             {
@@ -115,18 +119,9 @@ namespace Project.DataBase.MvcWebUI.Controllers
                     ProductId = cartLine.Product.ProductId,
                     Quantity = cartLine.Quantity,
                 };
+
                 _oderDetailService.Add(modelOrderDetail);
-                /*var modelProduct = new Product
-                {
-                    ProductId = cartLine.Product.ProductId,
-                    ProductName = cartLine.Product.ProductName,
-                    SupplierId = cartLine.Product.SupplierId,
-                    UnitsOnOrder = cartLine.Product.UnitsOnOrder + cartLine.Quantity,
-                    CategoryId = cartLine.Product.CategoryId,
-                    UnitPrice = cartLine.Product.UnitPrice,
-                    UnitsInStock = cartLine.Product.UnitsInStock,
-                };
-                _productService.Update(modelProduct);*/
+
             }
         TempData.Add("message", String.Format("Thank you {0}, your oder is in process", shippingDetails.FirstName));
             return View();

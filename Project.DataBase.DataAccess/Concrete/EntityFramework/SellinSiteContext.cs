@@ -11,6 +11,11 @@ namespace Project.DataBase.DataAccess.Concrete.EntityFramework
             //optionsBuilder.UseSqlServer(@"Server=DESKTOP-59QQQHC;Database=Northwind;Trusted_Connection=true");
             optionsBuilder.UseNpgsql("User Id=postgres;Password=1234;Host=localhost;Database=Northwind1;Persist Security Info=True;");
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<OrderDetail>()
+                .HasKey(od => new {od.OrderId,od.ProductId});
+        }
         public DbSet<Product> products { get; set; }
         public DbSet<Category> categories { get; set; }
         public DbSet<Customer> customers { get; set; }

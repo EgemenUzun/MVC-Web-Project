@@ -15,43 +15,48 @@
     <table class="table table-responsive">
         <thead>
             <tr>
-                <td>Product Name</td>
-                <td>Unit Price</td>
-                <td>Quantity</td>
+                <td>Products</td>
                 <td>OrderDate</td>
                 <td>RequiredDate</td>
                 <td>CompanyName</td>
                 <td>Total</td>
+                <td>Action</td>
             </tr>
         </thead>
         <tbody>
+
             @foreach (var item in Model.orderModels)
             {
                 <tr>
                     <td>
-                        @item.ProductName
-                    </td>
-                    <td>
-                        @item.UnitPrice
-                    </td>
-                    <td>
-                        @item.Quantity
-                    </td>
-                    <td>
+                        @foreach (var product in Model.productModels)
+                        {
+                    <tr>
+                        <td>@product.ProductName</td>
+                        <td>@product.UnitPrice</td>
+                        <td>@product.Quantity</td>
+                    </tr>
+                        }
+                </td>
+            <td>
                         @item.OrderDate
-                    </td>
-                    <td>
+            </td>
+            <td>
                         @item.RequiredDate
-                    </td>
-                    <td>
+            </td>
+            <td>
                         @item.CompanyName
-                    </td>
-                    <td>
+            </td>
+            <td>
                         @item.Total
-                    </td>
-
-                </tr>
+            </td>
+            <td>
+                <a class="btn-success" title="Done" asp-controller="Order" asp-action="Done" asp-route-orderId="@item.OrderId"><i class="bi bi-check-circle"></i></a>
+                <a class="btn-danger" title="Cancel" asp-controller="Order" asp-action="Cancel" asp-route-orderId="@item.OrderId"><i class="bi bi-x-circle"></i></a>
+            </td>
+            </tr>
             }
+
         </tbody>
     </table>
 </body>

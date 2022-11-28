@@ -13,27 +13,22 @@ namespace Project.DataBase.DataAccess.Concrete.EntityFramework
 {
     public class EfOrderDetailDal : EfEntityRepositoryBase<OrderDetail, SellinSiteContext>, IOrderDetailDal
     {
-        public List<OrderModel> GetOrdersWithDetails(string customerid)
+        public List<ProductModels> GetOrdersWithDetails(string customerid ,int orderid)
         {
             using (SellinSiteContext context = new SellinSiteContext())
             {
                 var result = from p in context.products
                              join od in context.orderdetails
                              on p.ProductId equals od.ProductId
-                             join o in context.orders
+                             join o in context.orders 
                              on od.OrderId equals o.OrderId
-                             join s in context.shippers
-                             on o.ShipperId equals s.ShipperId
-                             where(o.CustomerId == customerid)
-                             select new OrderModel
+                             where(o.CustomerId == customerid )
+                             where od.OrderId == orderid
+                             select new ProductModels
                              {
                                  ProductName = p.ProductName,
                                  Quantity = od.Quantity,
-                                 UnitPrice = p.UnitPrice,
-                                 OrderDate = o.OrderDate,
-                                 RequiredDate = o.RequiredDate,
-                                 CompanyName = s.CompanyName,
-                                 Total = o.Total
+                                 UnitPrice = p.UnitPrice
                              };
 
                 return result.ToList();

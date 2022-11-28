@@ -11,6 +11,7 @@ namespace Project.DataBase.DataAccess.Abstract
 {
     public interface IOrderDetailDal: IEntityRepository<OrderDetail>
     {
-        List<OrderModel> GetOrdersWithDetails(string customerid);
+
+        List<ProductModels> GetOrdersWithDetails(string customerid ,int orderid);
     }
 }

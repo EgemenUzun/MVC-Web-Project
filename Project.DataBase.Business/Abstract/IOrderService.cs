@@ -13,5 +13,7 @@ namespace Project.DataBase.Business.Abstract
         void Update(Order order);
         Order GetByID(int orderId);
         List<Order> GetAll();
+        void Order_Done(int orderId);
+        void Order_Canceled(int orderId);
     }
 }

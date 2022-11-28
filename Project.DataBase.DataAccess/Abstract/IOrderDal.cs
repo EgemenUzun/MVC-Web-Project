@@ -1,4 +1,5 @@
 ﻿using Project.Core.DataAccess;
+using Project.DataBase.Entities.ComplexTypes;
 using Project.DataBase.Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -10,5 +11,6 @@ namespace Project.DataBase.DataAccess.Abstract
 {
     public interface IOrderDal : IEntityRepository<Order>
     {
+        List<OrderModel> GetOrdersWithDetails(string customerid);
     }
 }

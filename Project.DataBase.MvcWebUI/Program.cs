@@ -56,7 +56,7 @@ app.UseStaticFiles();
 app.UseAuthorization();
 
 app.UseFileServer();
-app.UseNodeModules(builder.Environment.ContentRootPath);
+//app.UseNodeModules(builder.Environment.ContentRootPath);
 
 app.MapRazorPages();
 app.UseMvc(ConfigureRoutes);

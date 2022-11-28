@@ -24,6 +24,7 @@ namespace Project.DataBase.DataAccess.Concrete.EntityFramework
                              select new OrderModel
                              {
                                  OrderId = o.OrderId,
+                                 CustomerId = o.CustomerId,
                                  OrderDate = o.OrderDate,
                                  RequiredDate = o.RequiredDate,
                                  CompanyName = s.CompanyName,

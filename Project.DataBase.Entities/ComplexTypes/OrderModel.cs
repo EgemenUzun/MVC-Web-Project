@@ -14,5 +14,6 @@ namespace Project.DataBase.Entities.ComplexTypes
         public string CompanyName { get; set; }
         public string RequiredDate { get; set; }
         public string OrderDate { get; set; }
+        public string CustomerId { get; set; }
     }
 }

@@ -29,32 +29,25 @@
             {
                 <tr>
                     <td>
-                        @foreach (var product in Model.productModels)
-                        {
-                    <tr>
-                        <td>@product.ProductName</td>
-                        <td>@product.UnitPrice</td>
-                        <td>@product.Quantity</td>
-                    </tr>
-                        }
-                </td>
-            <td>
+                        @await Component.InvokeAsync("ProductDetail", new{userid=item.CustomerId,orderid=item.OrderId})
+                    </td>
+                    <td>
                         @item.OrderDate
-            </td>
-            <td>
+                    </td>
+                    <td>
                         @item.RequiredDate
-            </td>
-            <td>
+                    </td>
+                    <td>
                         @item.CompanyName
-            </td>
-            <td>
+                    </td>
+                    <td>
                         @item.Total
-            </td>
-            <td>
-                <a class="btn-success" title="Done" asp-controller="Order" asp-action="Done" asp-route-orderId="@item.OrderId"><i class="bi bi-check-circle"></i></a>
-                <a class="btn-danger" title="Cancel" asp-controller="Order" asp-action="Cancel" asp-route-orderId="@item.OrderId"><i class="bi bi-x-circle"></i></a>
-            </td>
-            </tr>
+                    </td>
+                    <td>
+                        <a class="text-success" title="Done" asp-controller="Order" asp-action="Done" asp-route-orderId="@item.OrderId"><i class="bi bi-check-circle"></i></a>
+                        <a class="text-danger" title="Cancel" asp-controller="Order" asp-action="Cancel" asp-route-orderId="@item.OrderId"><i class="bi bi-x-circle"></i></a>
+                    </td>
+                </tr>
             }
 
         </tbody>

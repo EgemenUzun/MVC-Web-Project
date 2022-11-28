@@ -1,0 +1,9 @@
+﻿@model Project.DataBase.MvcWebUI.Models.OrderDetailModel
+@foreach (var item in Model.productModels)
+{
+    <tr>
+        <td>@item.ProductName</td>
+        <td>@item.UnitPrice</td>
+        <td>@item.Quantity</td>
+    </tr>
+}

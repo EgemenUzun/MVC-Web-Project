@@ -13,8 +13,9 @@ namespace Project.DataBase.MvcWebUI.Models
         [DataType(DataType.Password)]
         [Required]
 
-       public string Password { get; set; }
-       public Customer Customer { get; set; }
+        public string Password { get; set; }
+        public Customer Customer { get; set; }
+        public Addresses Addresses { get; set; }
 
     }
 }

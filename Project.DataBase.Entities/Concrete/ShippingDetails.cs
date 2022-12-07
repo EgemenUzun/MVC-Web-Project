@@ -15,12 +15,9 @@ namespace Project.DataBase.Entities.Concrete
         [Required]
         public string LastName { get; set; }
         [Required]
-        [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }
-        [Required]
         public string City { get; set; }
         [Required]
-        public string Address { get; set; }
+        public int AddressId { get; set; }
         public int? ShipperId { get; set; }
     }
 }

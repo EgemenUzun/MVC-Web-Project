@@ -6,7 +6,7 @@
 <h2>Shipping Details</h2>
 
 <form asp-controller="Cart" asp-action="Complete" method="post">
-    <div class="mb-3">
+@*    <div class="mb-3">
         <label asp-for="ShippingDetails.FirstName"></label>
         <input asp-for="ShippingDetails.FirstName" class="form-control" placeholder="First Name">
         <span asp-validation-for="ShippingDetails.FirstName"></span>
@@ -17,20 +17,20 @@
         <span asp-validation-for="ShippingDetails.LastName"></span>
     </div>
     <div class="mb-3">
-        <label asp-for="ShippingDetails.Address"></label>
-        <input asp-for="ShippingDetails.Address" class="form-control" placeholder="Address">
-        <span asp-validation-for="ShippingDetails.Address"></span>
+        <label asp-for="ShippingDetails.AddressId"></label>
+        <input asp-for="ShippingDetails.AddressId" class="form-control" placeholder="Address">
+        <span asp-validation-for="ShippingDetails.AddressId"></span>
     </div>
     <div class="mb-3">
         <label asp-for="ShippingDetails.City"></label>
         <input asp-for="ShippingDetails.City" class="form-control" placeholder="City">
         <span asp-validation-for="ShippingDetails.City"></span>
+    </div>*@
+    <div>
+        <select asp-for="IAddressId" class="form-control" asp-items="@(new SelectList(Model.addresses,"AddressId","AddressTitle"))"></select>
     </div>
-
-    <div class="mb-3">
-        <label asp-for="ShippingDetails.Email"></label>
-        <input asp-for="ShippingDetails.Email" class="form-control" placeholder="Email">
-        <span asp-validation-for="ShippingDetails.Email"></span>
+    <div>
+        <a asp-controller="Order" asp-action="NewAddress">Add New Address</a>
     </div>
     <input type="submit" value="Complete Shopping" class="btn btn-sm btn-success"/>
 </form>

@@ -8,14 +8,13 @@ using System.Threading.Tasks;
 
 namespace Project.DataBase.Entities.Concrete
 {
-    public class Customer :IEntity
+    public class Addresses:IEntity
     {
-        public string? CustomerId { get; set; }
         [Required]
-        public string FirstName { get; set; }
+        public int AddressId { get; set; }
         [Required]
-        public string LastName { get; set; }
-        /*[Required]
+        public string AddressTitle { get; set; }
+        [Required]
         public string Address { get; set; }
         [Required]
         public string City { get; set; }
@@ -23,8 +22,6 @@ namespace Project.DataBase.Entities.Concrete
         public string County { get; set; }
         [Required]
         public string Country { get; set; }
-        [Required]*/
-        [DataType(DataType.PhoneNumber)]
-        public string Phone { get; set; }
+        public string? CustomerId { get; set; }
     }
 }

@@ -4,6 +4,7 @@ namespace Project.DataBase.MvcWebUI.Models
 {
     public class ShippingDetailsViewModel
     {
-        public ShippingDetails ShippingDetails { get; set; }
+        public int IAddressId { get; set; }
+        public List<Addresses>? addresses { get; set; }
     }
 }

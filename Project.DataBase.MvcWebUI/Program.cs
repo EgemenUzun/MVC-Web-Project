@@ -32,6 +32,12 @@ builder.Services.AddScoped<IProductDal, EfProductDal>();
 builder.Services.AddScoped<ICategoryService, CategoryManager>();
 builder.Services.AddScoped<ICategoryDal, EfCategoryDal>();
 
+builder.Services.AddScoped<IAddressService, AddressManager>();
+builder.Services.AddScoped<IAddressDal, EfAddressDal>();
+
+builder.Services.AddScoped<IMultiCategoryService, MultiCategoryManager>();
+builder.Services.AddScoped<IMultiCategoryDal, EfMultiCategoryDal>();
+
 builder.Services.AddSingleton<ICartSessionService, CartSessionService>();
 builder.Services.AddSingleton<ICartService, CartService>();
 

@@ -21,8 +21,7 @@ namespace Project.DataBase.Entities.Concrete
         public int ShipperId { get; set; }
         public string OrderDate { get; set; }
         public string RequiredDate { get; set; }
-        public string ShipAddress { get; set; }
-        public string ShipCity { get; set; }
+        public int AddressId { get; set; }
         public decimal Total { get; set; }
         public bool? IsCanceled { get; set; }
         public bool? IsProgress { get; set; }

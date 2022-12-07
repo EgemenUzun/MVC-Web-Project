@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis;
 using Project.DataBase.Business.Abstract;
 using Project.DataBase.DataAccess.Abstract;
@@ -7,6 +8,7 @@ using Project.DataBase.Entities.Concrete;
 using Project.DataBase.MvcWebUI.Models;
 using Project.DataBase.MvcWebUI.Services;
 using Project.DataBase.MvcWebUI.TagHelpers;
+using System.Collections.Generic;
 using System.Net;
 
 namespace Project.DataBase.MvcWebUI.Controllers
@@ -21,7 +23,8 @@ namespace Project.DataBase.MvcWebUI.Controllers
         IOrderDetailService _oderDetailService;
         IOrderDetailDal _orderDDal;
         IOrderDal _orderDal;
-        public CartController(ICartSessionService cartSessionService, ICartService cartService, IProductService productService, IOrderService oderService, IOrderDetailService oderDetailService , IOrderDetailDal orderDDal , IOrderDal orderDal)
+        IAddressService _addressService;
+        public CartController(ICartSessionService cartSessionService, ICartService cartService, IProductService productService, IOrderService oderService, IOrderDetailService oderDetailService , IOrderDetailDal orderDDal , IOrderDal orderDal,IAddressService addressService)
         {
             _cartSessionService = cartSessionService;
             _cartService = cartService;
@@ -30,6 +33,7 @@ namespace Project.DataBase.MvcWebUI.Controllers
             _oderDetailService = oderDetailService;
             _orderDDal = orderDDal;
             _orderDal = orderDal;
+            _addressService = addressService;
         }
         public ActionResult AddToCArt(int productId)
         {
@@ -78,32 +82,37 @@ namespace Project.DataBase.MvcWebUI.Controllers
         }
         public IActionResult Complete()
         {
-
             var shippingDetailsViewModel = new ShippingDetailsViewModel
             {
-                ShippingDetails = new ShippingDetails()
+                addresses = _addressService.GetByUser(User.GetUserId())
             };
-            if(shippingDetailsViewModel.ShippingDetails != null)
-                return View();
+            if (shippingDetailsViewModel.addresses != null)
+            {
+
+                return View(shippingDetailsViewModel);
+            }
+                
             return RedirectToAction("Index");
         }
         [HttpPost]
-        public IActionResult Complete(ShippingDetails shippingDetails)
+        public IActionResult Complete(ShippingDetailsViewModel shippingDetails)
         {
             if (!ModelState.IsValid)
             {
-                return View();
+                var shippingDetailsViewModel = new ShippingDetailsViewModel
+                {
+                    addresses = _addressService.GetByUser(User.GetUserId())
+                };
+                return View(shippingDetailsViewModel);
 
             }
 
             var cart = _cartSessionService.GetCart();
-            shippingDetails.ShipperId = 1;
             var modelOrder = new Order
             {
                 CustomerId = User.GetUserId(),
-                ShipperId = (int)shippingDetails.ShipperId,
-                ShipAddress = shippingDetails.Address,
-                ShipCity = shippingDetails.City,
+                ShipperId = 1,
+                AddressId = shippingDetails.IAddressId,
                 Total = cart.Total,
                 OrderDate = DateTime.Now.ToString("yyyy-mm-dd"),
                 RequiredDate = DateTime.Now.AddDays(15).ToString("yyyy-mm-dd"),
@@ -123,8 +132,7 @@ namespace Project.DataBase.MvcWebUI.Controllers
                 _oderDetailService.Add(modelOrderDetail);
 
             }
-        TempData.Add("message", String.Format("Thank you {0}, your oder is in process", shippingDetails.FirstName));
-            return View();
+            return RedirectToAction("Index","Order");
     }
 }
 

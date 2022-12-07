@@ -10,15 +10,17 @@ namespace Project.DataBase.MvcWebUI.Controllers
     public class AccountController : Controller
     {
         ICustomerService _customerService;
+        IAddressService _addressService;
         UserManager<CustomIdentityUser> _userManager;
         RoleManager<CustomIdentityRole> _roleManager;
         SignInManager<CustomIdentityUser> _signInManager;
-        public AccountController(ICustomerService customerService, UserManager<CustomIdentityUser> userManager, RoleManager<CustomIdentityRole> roleManager, SignInManager<CustomIdentityUser> signInManager)
+        public AccountController(ICustomerService customerService, UserManager<CustomIdentityUser> userManager, RoleManager<CustomIdentityRole> roleManager, SignInManager<CustomIdentityUser> signInManager, IAddressService addressService)
         {
             _customerService = customerService;
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
+            _addressService = addressService;
         }
 
         public ActionResult Register()
@@ -28,7 +30,7 @@ namespace Project.DataBase.MvcWebUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterViewModel registerViewModel ,Customer customer)
+        public ActionResult Register(RegisterViewModel registerViewModel, Customer customer, Addresses addresses)
         {
             if (ModelState.IsValid)
             {
@@ -38,13 +40,14 @@ namespace Project.DataBase.MvcWebUI.Controllers
                     Email = registerViewModel.Email
                 };
 
-                IdentityResult result =
-                    _userManager.CreateAsync(user, registerViewModel.Password).Result;
-                
+                IdentityResult result = _userManager.CreateAsync(user, registerViewModel.Password).Result;
+
                 if (result.Succeeded)
                 {
                     customer.CustomerId = user.Id;
+                    addresses.CustomerId = user.Id;
                     _customerService.Add(customer);
+                    _addressService.Add(addresses);
                     if (!_roleManager.RoleExistsAsync("Admin").Result)
                     {
                         CustomIdentityRole role = new CustomIdentityRole

@@ -43,34 +43,43 @@
                             <span asp-validation-for="Customer.LastName"></span>
                         </div>
                     </div>
+
                     <div class="mb-3">
-                        <label asp-for="Customer.Address" class="col-md-3 control-label"></label>
+                        <label asp-for="Addresses.AddressTitle" class="col-md-3 control-label"></label>
                         <div class="col-md-9">
-                            <input asp-for="Customer.Address" type="text" class="form-control" placeholder="Address">
-                            <span asp-validation-for="Customer.Address"></span>
+                            <input asp-for="Addresses.AddressTitle" type="text" class="form-control" placeholder="AddressTitle">
+                            <span asp-validation-for="Addresses.AddressTitle"></span>
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <label asp-for="Customer.City" class="col-md-3 control-label"></label>
+                        <label asp-for="Addresses.Address" class="col-md-3 control-label"></label>
                         <div class="col-md-9">
-                            <input asp-for="Customer.City" type="text" class="form-control" placeholder="City">
-                            <span asp-validation-for="Customer.City"></span>
+                            <input asp-for="Addresses.Address" type="text" class="form-control" placeholder="Address">
+                            <span asp-validation-for="Addresses.Address"></span>
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <label asp-for="Customer.County" class="col-md-3 control-label"></label>
+                        <label asp-for="Addresses.City" class="col-md-3 control-label"></label>
                         <div class="col-md-9">
-                            <input asp-for="Customer.County" type="text" class="form-control" placeholder="County">
-                            <span asp-validation-for="Customer.County"></span>
+                            <input asp-for="Addresses.City" type="text" class="form-control" placeholder="City">
+                            <span asp-validation-for="Addresses.City"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Addresses.County" class="col-md-3 control-label"></label>
+                        <div class="col-md-9">
+                            <input asp-for="Addresses.County" type="text" class="form-control" placeholder="County">
+                            <span asp-validation-for="Addresses.County"></span>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label asp-for="Customer.Country" class="col-md-3 control-label"></label>
+                        <label asp-for="Addresses.Country" class="col-md-3 control-label"></label>
                         <div class="col-md-9">
-                            <input asp-for="Customer.Country" type="text" class="form-control" placeholder="Country">
-                            <span asp-validation-for="Customer.Country"></span>
+                            <input asp-for="Addresses.Country" type="text" class="form-control" placeholder="Country">
+                            <span asp-validation-for="Addresses.Country"></span>
                         </div>
                     </div>
                     <div class="mb-3">

@@ -1,0 +1,45 @@
+﻿@model Project.DataBase.MvcWebUI.Models.AddAddressViewModel
+@{
+    Layout = "~/Views/_Default.cshtml";
+}
+<h2>Add an Address</h2>
+<form asp-controller="Order" asp-action="NewAddress" method="post">
+    <div class="mb-3">
+        <label asp-for="Addresses.AddressTitle" class="col-md-3 control-label"></label>
+        <div class="col-md-9">
+            <input asp-for="Addresses.AddressTitle" type="text" class="form-control" placeholder="AddressTitle">
+            <span asp-validation-for="Addresses.AddressTitle"></span>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Addresses.Address" class="col-md-3 control-label"></label>
+        <div class="col-md-9">
+            <input asp-for="Addresses.Address" type="text" class="form-control" placeholder="Address">
+            <span asp-validation-for="Addresses.Address"></span>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Addresses.City" class="col-md-3 control-label"></label>
+        <div class="col-md-9">
+            <input asp-for="Addresses.City" type="text" class="form-control" placeholder="City">
+            <span asp-validation-for="Addresses.City"></span>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Addresses.County" class="col-md-3 control-label"></label>
+        <div class="col-md-9">
+            <input asp-for="Addresses.County" type="text" class="form-control" placeholder="County">
+            <span asp-validation-for="Addresses.County"></span>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Addresses.Country" class="col-md-3 control-label"></label>
+        <div class="col-md-9">
+            <input asp-for="Addresses.Country" type="text" class="form-control" placeholder="Country">
+            <span asp-validation-for="Addresses.Country"></span>
+        </div>
+    </div>
+    <input type="submit" value="Add" class="btn btn-sm btn-success" />
+</form>

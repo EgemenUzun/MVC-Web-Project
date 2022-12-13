@@ -29,8 +29,7 @@ namespace Project.DataBase.MvcWebUI.Controllers
 
             var model = new OrderDetailModel
             {
-                orderModels = _orderDal.GetOrdersWithDetails(User.GetUserId()),
-               // productModels = _orderDDal.GetOrdersWithDetails(User.GetUserId(), 1),
+                orderModels = _orderDal.GetOrdersWithDetails(User.GetUserId())
 
             };
             return View(model);

@@ -9,7 +9,7 @@ namespace Project.DataBase.DataAccess.Concrete.EntityFramework
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseSqlServer(@"Server=DESKTOP-59QQQHC;Database=Northwind;Trusted_Connection=true");
-            optionsBuilder.UseNpgsql("User Id=postgres;Password=1234;Host=localhost;Database=northwind1;Persist Security Info=True;");
+            optionsBuilder.UseNpgsql("User Id=postgres;Password=1234;Host=localhost;Database=Northwind1;Persist Security Info=True;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

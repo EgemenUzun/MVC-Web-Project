@@ -21,8 +21,7 @@ namespace Project.DataBase.DataAccess.Concrete.EntityFramework
                              join s in context.shippers
                              on o.ShipperId equals s.ShipperId
                              where (o.CustomerId == customerid)
-                             where (o.IsProgress == true)
-                             where(o.IsCanceled == false)
+                             where (o.StatusId == 1)
                              select new OrderModel
                              {
                                  OrderId = o.OrderId,

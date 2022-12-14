@@ -25,6 +25,7 @@ namespace Project.DataBase.DataAccess.Concrete.EntityFramework
         public DbSet<Shipper> shippers { get; set; }
         public DbSet<Supplier> suppliers { get; set; }
         public DbSet<Addresses> addresses { get; set; }
+        public DbSet<Status> status { get; set; }
         //public DbSet<MultiCategory> multicategories { get; set; }
     }
 }

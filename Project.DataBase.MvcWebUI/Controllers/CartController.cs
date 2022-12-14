@@ -116,8 +116,7 @@ namespace Project.DataBase.MvcWebUI.Controllers
                 Total = cart.Total,
                 OrderDate = DateTime.Now.ToString("yyyy-mm-dd"),
                 RequiredDate = DateTime.Now.AddDays(15).ToString("yyyy-mm-dd"),
-                IsProgress = true,
-                IsCanceled = false
+                StatusId = 1
             };
             _oderService.Add(modelOrder);
             foreach (CartLine cartLine in cart.CartLines)

@@ -38,6 +38,14 @@ builder.Services.AddScoped<IAddressDal, EfAddressDal>();
 builder.Services.AddScoped<IMultiCategoryService, MultiCategoryManager>();
 builder.Services.AddScoped<IMultiCategoryDal, EfMultiCategoryDal>();
 
+builder.Services.AddScoped<IStatusService, StatusManager>();
+builder.Services.AddScoped<IStatusDal, EfStatusDal>();
+
+
+builder.Services.AddScoped<ITopCustomerForTopProductService, TopCustomerForTopProductManager>();
+builder.Services.AddScoped<ITopCustomerForTopProductDal, EfTopCustomerForTopProductDal>();
+
+
 builder.Services.AddSingleton<ICartSessionService, CartSessionService>();
 builder.Services.AddSingleton<ICartService, CartService>();
 

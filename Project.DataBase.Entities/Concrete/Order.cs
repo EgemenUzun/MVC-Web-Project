@@ -23,7 +23,6 @@ namespace Project.DataBase.Entities.Concrete
         public string RequiredDate { get; set; }
         public int AddressId { get; set; }
         public decimal Total { get; set; }
-        public bool? IsCanceled { get; set; }
-        public bool? IsProgress { get; set; }
+        public int? StatusId { get; set; }
     }
 }

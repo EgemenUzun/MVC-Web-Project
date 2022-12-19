@@ -9,9 +9,11 @@ namespace Project.DataBase.MvcWebUI.Controllers
     public class ProductController : Controller
     {
         IProductService _productService;
-        public ProductController(IProductService porductService)
+        ITopCustomerForTopProductService _topCustomerForTopProductService;
+        public ProductController(IProductService porductService, ITopCustomerForTopProductService opCustomerForTopProductService)
         {
             _productService = porductService;
+            _topCustomerForTopProductService = opCustomerForTopProductService;
         }
 
         public IActionResult Index(int page =1,int category=0)
@@ -27,6 +29,14 @@ namespace Project.DataBase.MvcWebUI.Controllers
                 CurrentCategory = category,
                 CurrentPage = page
             };
+            return View(model);
+        }
+        public IActionResult TopCustomerForTopProduct()
+        {
+            var model = new CustomerForTopProductsViewModel{
+                topCustomerForTopProduct = _topCustomerForTopProductService.GetCustomerForTopProducts()
+        };
+
             return View(model);
         }
 

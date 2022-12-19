@@ -1,0 +1,25 @@
+﻿@model Project.DataBase.MvcWebUI.Models.CustomerForTopProductsViewModel
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div>
+    <table class="table table-responsive">
+        <tr>
+            <td>Customer Id</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Product Name</td>
+        </tr>
+        @foreach (var item in Model.topCustomerForTopProduct)
+        {
+            <tr>
+                <td>@item.CustomerId</td>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.ProductName</td>
+            </tr>
+        }
+    </table>
+</div>
+

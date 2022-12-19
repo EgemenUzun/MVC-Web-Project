@@ -25,5 +25,10 @@
         <input asp-for="Product.UnitsInStock" class="form-control" placeholder="Units In Stock" />
         <span asp-validation-for="Product.UnitsInStock"></span>
     </div>
+    <div class="mb-3">
+        <label asp-for="Product.ImageUrl"></label>
+        <input asp-for="Product.ImageUrl" class="form-control" placeholder="Image Url" />
+        <span asp-validation-for="Product.ImageUrl"></span>
+    </div>
     <input type="submit" value="Add" class="btn btn-sm btn-success" />
 </form>

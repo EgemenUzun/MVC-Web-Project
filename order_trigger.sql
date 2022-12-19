@@ -8,8 +8,6 @@ begin
    from orderdetails od
    where od."ProductId" = pr."ProductId"
      and od."OrderId" = new."OrderId";
-   DELETE from orderdetails od where od."OrderId" = new."OrderId";
-   DELETE from orders o where o."OrderId" = new."OrderId";
    return new;
 end;
 $$
@@ -18,7 +16,7 @@ language plpgsql;
 create or replace trigger is_done
    after update on orders 
    for each row
-   when (new."IsProgress" = false and old."IsProgress" = true)
+   when (new."StatusId" = 1 and old."StatusId" = 3)
    execute procedure reduce_quantity();
 ----------------------------------------------------------------------------------------------------------
 
@@ -31,8 +29,6 @@ begin
    from orderdetails od
    where od."ProductId" = pr."ProductId"
      and od."OrderId" = new."OrderId";
-   DELETE from orderdetails od where od."OrderId" = new."OrderId";
-   DELETE from orders o where o."OrderId" = new."OrderId";
    return new;
 end;
 $$
@@ -41,7 +37,7 @@ language plpgsql;
 create or replace trigger orders_canceled_trigger
    after update on orders 
    for each row
-   when (new."IsCanceled" = true and old."IsCanceled" = FALSE)
+   when (new."StatusId" = 1 and old."StatusId" = 2)
    execute procedure order_canceled();
 ----------------------------------------------------------------------------------------------------------
    create or replace function UnitsOnOrder_Increase() returns trigger
@@ -61,11 +57,11 @@ execute procedure UnitsOnOrder_Increase();
 Create Or Replace Procedure Is_Done(OrderID orders."OrderId"%type)
 LANGUAGE SQL
 as $$
-update orders set "IsProgress" = false where "OrderId"=OrderID;
+update orders set "StatusId" = 3 where "OrderId"=OrderID;
 $$;
 
 Create Or Replace Procedure Is_Canceled(OrderID orders."OrderId"%type)
 LANGUAGE SQL
 as $$
-update orders set "IsCanceled" = true where "OrderId"=OrderID;
+update orders set "StatusId" = 2 where "OrderId"=OrderID;
 $$;

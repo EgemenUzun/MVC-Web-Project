@@ -19,6 +19,7 @@ namespace Project.DataBase.Entities.Concrete
         public int CategoryId { get; set; }
         [Required]
         [Range(0.01, 999999999, ErrorMessage = "Price must be greater than 0.00")]
+        [DisplayFormat(DataFormatString = "{0:N2}", ApplyFormatInEditMode = true)]
         public decimal UnitPrice { get; set; }
         [Required]
         [Range(0, Int32.MaxValue)]
@@ -26,5 +27,6 @@ namespace Project.DataBase.Entities.Concrete
         [Required]
         public int UnitsOnOrder { get; set; }
         public string? SupplierId { get; set; }
+        public string? ImageUrl { get; set; }
     }
 }

@@ -16,7 +16,7 @@ CREATE TABLE Products(
 	"UnitPrice" money  NOT NULL,
 	"UnitsInStock" SMALLINT NOT NULL,
 	"UnitsOnOrder" SMALLINT,
-	"Discount" NUMERIC DEFAULT 0
+	"ImageUrl" text
 );
 create TABLE Categories(
 	"CategoryId" serial PRIMARY KEY NOT NULL,
@@ -106,6 +106,23 @@ INSERT INTO shippers VALUES (1,'Aras Kargo');
 INSERT INTO Status VALUES (1,'InProgres');
 INSERT INTO Status VALUES (2,'IsCanceled');
 INSERT INTO Status VALUES (3,'Done');
+
+CREATE OR REPLACE VIEW public."TopCustomerForTopProduct"
+ AS
+ SELECT customers."CustomerId",
+    customers."FirstName",
+    customers."LastName",
+    products."ProductName"
+   FROM customers
+     JOIN orders ON orders."CustomerId" = customers."CustomerId"
+     JOIN orderdetails ON orderdetails."OrderId" = orders."OrderId"
+     JOIN products ON products."ProductId" = orderdetails."ProductId"
+  GROUP BY customers."CustomerId", customers."FirstName", customers."LastName", products."ProductName"
+  ORDER BY (sum(orderdetails."Quantity")) DESC
+ LIMIT 1;
+
+ALTER TABLE public."TopCustomerForTopProduct"
+    OWNER TO postgres;
 
 
 

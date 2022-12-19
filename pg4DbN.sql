@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS Products cascade;
 DROP TABLE IF EXISTS Categories cascade;
 Drop TABLE IF EXISTS Shippers cascade;
 Drop Table If EXISTS Addresses cascade;
-Drop Table If EXISTS multicategories cascade;
+--Drop Table If EXISTS multicategories cascade;
 
 CREATE TABLE Products(
 	"ProductId" serial PRIMARY KEY NOT NULL,
@@ -15,17 +15,16 @@ CREATE TABLE Products(
 	"UnitPrice" money  NOT NULL,
 	"UnitsInStock" SMALLINT NOT NULL,
 	"UnitsOnOrder" SMALLINT,
-	"Discount" NUMERIC DEFAULT 0
 );
 create TABLE Categories(
 	"CategoryId" serial PRIMARY KEY NOT NULL,
 	"CategoryName" character varying(15) NOT NULL
 );
-create Table multicategories(
+/*create Table multicategories(
 	"CategoryId" smallint not null,
 	"ProductId"  smallint not null,
 	constraint pk_multi primary key("CategoryId","ProductId")
-);
+);*/
 CREATE TABLE Customers(
 	"CustomerId" text PRIMARY key	NOT NULL,
 	"FirstName" character varying(15) NOT NULL,
@@ -65,8 +64,11 @@ Create Table Addresses(
 
 Alter Table Addresses
     add constraint fk_address_customer foreign key ("CustomerId") REFERENCES Customers("CustomerId");
+
 Alter TABLE Products
-	add constraint fk_product_suppliers FOREIGN key ("SupplierId") REFERENCES Customers("CustomerId");
+	add constraint fk_product_suppliers FOREIGN key ("CategoryId") REFERENCES Categories("CategoryId");
+Alter TABLE Products
+	add constraint fk_product_category FOREIGN key ("SupplierId") REFERENCES Customers("CustomerId");
 
 alter TABLE OrderDetails
 	add constraint fk_orderDetails_product FOREIGN key ("ProductId") REFERENCES Products("ProductId");
@@ -78,12 +80,12 @@ alter TABLE Orders
 alter TABLE Orders
 	add constraint fk_order_shippers FOREIGN key ("ShipperId") REFERENCES Shippers("ShipperId");
 alter TABLE Orders
-	add constraint fk_order_address FOREIGN key ("AddressId") REFERENCES AddressId("AddressId");	
-alter TABLE multicategories
+	add constraint fk_order_address FOREIGN key ("AddressId") REFERENCES Addresses("AddressId");	
+/*alter TABLE multicategories
 	add constraint fk_MultiCategory_product FOREIGN key ("ProductId") REFERENCES Products("ProductId");
 alter TABLE multicategories
 	add constraint fk_MultiCategory_category FOREIGN key ("CategoryId") REFERENCES Categories("CategoryId");
-
+*/
 
 INSERT INTO categories VALUES (1, 'Beverages');
 INSERT INTO categories VALUES (2, 'Condiments');

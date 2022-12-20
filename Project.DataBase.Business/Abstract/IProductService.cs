@@ -17,5 +17,7 @@ namespace Project.DataBase.Business.Abstract
         Product GetByID(int productId);
         public List<Product> GetByLogin(string customerid, int? categoryId);
         public List<Product> GetByUser(string customerid);
+        List<Product> searchProduct(string search, string customerid, int categoryId);
+        List<Product> searchProduct(string search, int categoryId);
     }
 }

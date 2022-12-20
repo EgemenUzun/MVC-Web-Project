@@ -50,5 +50,14 @@ namespace Project.DataBase.Business.Concrete
             _productDal.Update(product);
         }
 
+        public List<Product> searchProduct(string search, string customerid, int categoryId)
+        {
+            return _productDal.GetList(p => (p.SupplierId != customerid && (p.CategoryId == categoryId || categoryId == 0)&& (p.ProductName.Contains(search))));
+        }
+
+        public List<Product> searchProduct(string search, int categoryId)
+        {
+            return _productDal.GetList(p => (p.CategoryId == categoryId || categoryId == 0) && (p.ProductName.Contains(search)));
+        }
     }
 }

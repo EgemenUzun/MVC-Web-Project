@@ -1,5 +1,6 @@
 ﻿using Project.Core.DataAccess.EntityFramework;
 using Project.DataBase.DataAccess.Abstract;
+using Project.DataBase.Entities.ComplexTypes;
 using Project.DataBase.Entities.Concrete;
 using System;
 using System.Collections.Generic;

@@ -2,7 +2,13 @@
 @{
     Layout = "~/Views/_Layout.cshtml";
 }
+<div class="form-control">
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" asp-for="Search" placeholder="Search" aria-label="Search" id="search">
+    </form>
+</div>
 <div class="row">
+
     @foreach (var product in Model.Products)
     {
         <div class="col-2 rounded">

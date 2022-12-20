@@ -9,5 +9,6 @@ namespace Project.DataBase.MvcWebUI.Models
         public int PageSize { get; internal set; }
         public int CurrentCategory { get; internal set; }
         public int CurrentPage { get; internal set; }
+        public string Search { get; internal set; }
     }
 }

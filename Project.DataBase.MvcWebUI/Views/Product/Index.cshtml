@@ -9,7 +9,7 @@
             <p><img src="@product.ImageUrl" alt="My Image" width="200" height="200"></p>
             <p>@product.ProductName</p>
             <p>@product.UnitPrice ₺</p>
-            <p>@product.UnitsInStock</p>
+            <p>Stock:@product.UnitsInStock</p>
             <p><a class="btn btn-success btn-sm" asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@product.ProductId">add to cart</a></p>
         </div>
 

@@ -12,16 +12,12 @@ namespace Project.DataBase.MvcWebUI.Controllers
     [Authorize]
     public class OrderController : Controller
     {
-        IOrderDetailDal _orderDDal;
-        IOrderDal _orderDal;
         IOrderService _orderService;
-        IAddressDal _addressDal;
-        public OrderController(IOrderDetailDal orderDDal, IOrderService orderService, IOrderDal orderDal, IAddressDal addressDal)
+        IAddressService _addressService;
+        public OrderController(IOrderService orderService, IAddressService addressService)
         {
-            _orderDDal = orderDDal;
             _orderService = orderService;
-            _orderDal = orderDal;
-            _addressDal = addressDal;
+            _addressService = addressService;
         }
 
         public IActionResult Index()
@@ -29,7 +25,7 @@ namespace Project.DataBase.MvcWebUI.Controllers
 
             var model = new OrderDetailModel
             {
-                orderModels = _orderDal.GetOrdersWithDetails(User.GetUserId())
+                orderModels = _orderService.GetOrdersWithDetails(User.GetUserId())
 
             };
             return View(model);
@@ -45,7 +41,7 @@ namespace Project.DataBase.MvcWebUI.Controllers
             if (ModelState.IsValid)
             {
                 addresses.CustomerId = User.GetUserId();
-                _addressDal.Add(addresses);
+                _addressService.Add(addresses);
                 TempData.Add("message", "Address Succesfuly added");
                 return RedirectToAction("Complete", "Cart");
             }

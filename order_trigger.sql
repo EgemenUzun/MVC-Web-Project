@@ -16,10 +16,9 @@ language plpgsql;
 create or replace trigger is_done
    after update on orders 
    for each row
-   when (new."StatusId" = 1 and old."StatusId" = 3)
+   when (new."StatusId" = 3 and old."StatusId" = 1)
    execute procedure reduce_quantity();
 ----------------------------------------------------------------------------------------------------------
-
    CREATE or REPLACE FUNCTION order_canceled() 
   RETURNS TRIGGER 
 as $$
@@ -37,7 +36,7 @@ language plpgsql;
 create or replace trigger orders_canceled_trigger
    after update on orders 
    for each row
-   when (new."StatusId" = 1 and old."StatusId" = 2)
+   when (new."StatusId" = 2 and old."StatusId" = 1)
    execute procedure order_canceled();
 ----------------------------------------------------------------------------------------------------------
    create or replace function UnitsOnOrder_Increase() returns trigger

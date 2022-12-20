@@ -1,5 +1,6 @@
 ﻿using Project.DataBase.Business.Abstract;
 using Project.DataBase.DataAccess.Abstract;
+using Project.DataBase.Entities.ComplexTypes;
 using Project.DataBase.Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,11 @@ namespace Project.DataBase.Business.Concrete
         public OrderDetail GetByID(int orderId)
         {
             return _orderDetailDal.Get(o => o.OrderId == orderId);
+        }
+
+        public List<ProductModels> GetOrdersWithDetails(string customerid, int orderid)
+        {
+            return _orderDetailDal.GetOrdersWithDetails(customerid, orderid);
         }
     }
 }

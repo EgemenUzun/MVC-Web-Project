@@ -17,8 +17,8 @@
     {
         <tr>
             <td>@item.Product.ProductName</td>
-            <td>@item.Product.UnitPrice</td>
-            <td>@item.Product.UnitsInStock</td>
+            <td>@item.Product.UnitPrice ₺</td>
+            <td>Stock:@item.Product.UnitsInStock</td>
             <td>@item.Quantity</td>
             <td class="text-right"><a class="btn btn-sm btn-danger" asp-controller="Cart" asp-action="Remove" asp-route-productId="@item.Product.ProductId"><span class="bi bi-x-lg"></span> remove from cart</a></td>
         </tr>
@@ -32,7 +32,7 @@
         </td>
         <td class="text-right">
             <h3>
-                <strong>@Model.Cart.Total</strong>
+                <strong>@Model.Cart.Total ₺</strong>
             </h3>
         </td>
     </tr>

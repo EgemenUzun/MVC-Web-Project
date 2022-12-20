@@ -21,18 +21,14 @@ namespace Project.DataBase.MvcWebUI.Controllers
         IProductService _productService;
         IOrderService _oderService;
         IOrderDetailService _oderDetailService;
-        IOrderDetailDal _orderDDal;
-        IOrderDal _orderDal;
         IAddressService _addressService;
-        public CartController(ICartSessionService cartSessionService, ICartService cartService, IProductService productService, IOrderService oderService, IOrderDetailService oderDetailService , IOrderDetailDal orderDDal , IOrderDal orderDal,IAddressService addressService)
+        public CartController(ICartSessionService cartSessionService, ICartService cartService, IProductService productService, IOrderService oderService, IOrderDetailService oderDetailService ,IAddressService addressService)
         {
             _cartSessionService = cartSessionService;
             _cartService = cartService;
             _productService = productService;
             _oderService = oderService;
             _oderDetailService = oderDetailService;
-            _orderDDal = orderDDal;
-            _orderDal = orderDal;
             _addressService = addressService;
         }
         public ActionResult AddToCArt(int productId)

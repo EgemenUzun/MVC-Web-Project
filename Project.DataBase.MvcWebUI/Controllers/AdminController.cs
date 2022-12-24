@@ -37,11 +37,11 @@ namespace Project.DataBase.MvcWebUI.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult Add(Product product)
+        public ActionResult Add(Product product, string UnitPrice)
         {
             if(ModelState.IsValid)
             {
-
+                product.UnitPrice = decimal.Parse(UnitPrice);
                 product.SupplierId = this.User.GetUserId();
                 _productService.Add(product);
                 TempData.Add("message", "Product was successfully added");
@@ -59,10 +59,11 @@ namespace Project.DataBase.MvcWebUI.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult Update(Product product)
+        public ActionResult Update(Product product, string UnitPrice)
         {
             if (ModelState.IsValid)
             {
+                product.UnitPrice = decimal.Parse(UnitPrice);
                 product.SupplierId=this.User.GetUserId();
                 product.UnitsOnOrder = _productService.GetByID(product.ProductId).UnitsOnOrder;
                 _productService.Update(product);

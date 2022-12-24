@@ -16,8 +16,13 @@
         <span asp-validation-for="Product.CategoryId"></span>
     </div>
     <div class="mb-3">
+        <label asp-for="UnitPrice"></label>
+        <input asp-for="UnitPrice" class="form-control" placeholder="Unit Price" />
+        <span asp-validation-for="UnitPrice"></span>
+    </div>
+    <div class="mb-3" hidden >
         <label asp-for="Product.UnitPrice"></label>
-        <input asp-for="Product.UnitPrice" class="form-control" placeholder="Unit Price" />
+        <input asp-for="Product.UnitPrice" class="form-control" placeholder="Unit Price" value="1" />
         <span asp-validation-for="Product.UnitPrice"></span>
     </div>
     <div class="mb-3">

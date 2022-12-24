@@ -13,7 +13,7 @@ CREATE TABLE Products(
 	"ProductName" character varying(15) NOT NULL,
 	"CategoryId" smallint not null,
 	"SupplierId" text NOT NULL,
-	"UnitPrice" money  NOT NULL,
+	"UnitPrice" numeric(18,2)  NOT NULL,
 	"UnitsInStock" SMALLINT NOT NULL,
 	"UnitsOnOrder" SMALLINT,
 	"ImageUrl" text
@@ -40,7 +40,7 @@ Create TABLE Orders(
 	"OrderDate" text,
 	"RequiredDate" text,
 	"AddressId" int not null,
-	"Total" money not null,
+	"Total" numeric(18,2) not null,
 	"StatusId" smallint not null default 1
 );
 CREATE TABLE OrderDetails(
@@ -76,7 +76,7 @@ Alter Table products
 	add constraint fk_product_category FOREIGN key ("CategoryId") REFERENCES Categories("CategoryId");
 
 alter TABLE OrderDetails
-	add constraint fk_orderDetails_product FOREIGN key ("ProductId") REFERENCES Products("ProductId");
+	add constraint fk_orderDetails_product FOREIGN key ("ProductId") REFERENCES Products("ProductId") ON DELETE CASCADE;
 alter TABLE OrderDetails
 	add constraint fk_orderDetails_order FOREIGN key ("OrderId") REFERENCES Orders("OrderId");
 

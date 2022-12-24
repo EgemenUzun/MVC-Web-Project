@@ -18,6 +18,7 @@ namespace Project.DataBase.Entities.Concrete
         [Required]
         public int CategoryId { get; set; }
         [Required]
+        [Column(TypeName = "decimal(18, 2)")]
         [Range(0.01, 999999999, ErrorMessage = "Price must be greater than 0.00")]
         [DisplayFormat(DataFormatString = "{0:N2}", ApplyFormatInEditMode = true)]
         public decimal UnitPrice { get; set; }
